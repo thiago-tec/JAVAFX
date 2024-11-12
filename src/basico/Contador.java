@@ -9,77 +9,74 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Contador extends Application{
+public class Contador extends Application {
 	
 	private int contador = 0;
 	
-	private void atualizarLabelNumero(Label label) {
+	private void AtualizarLabelNum(Label label) {
 		label.setText(Integer.toString(contador));
+		
 		label.getStyleClass().remove("verde");
 		label.getStyleClass().remove("vermelho");
 		
 		if(contador > 0) {
 			label.getStyleClass().add("verde");
-		}else if(contador < 0) {
+		}else {
 			label.getStyleClass().add("vermelho");
 		}
 	}
 
-	
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Label labelTitulo = new Label("Contador");//setando escrita
+		
+		VBox boxPrincipal = new VBox();
+		
+		Label labelTitulo = new Label("Contador");
+		Label labelNumero = new Label("0");
+		labelNumero.getStyleClass().add("numero");
 		labelTitulo.getStyleClass().add("titulo");
 		
-		Label labelNumero = new Label("0");//setando escrita 
-		labelNumero.getStyleClass().add("numero");
-		
-		
-		Button botaoDecremento = new Button("-");//setando escrita no botão
-		botaoDecremento.getStyleClass().add("botoes");
-		botaoDecremento.setOnAction(e -> {
-			contador--;
-			atualizarLabelNumero(labelNumero);
-		});
-		
-		
-		Button botaoIncremento = new Button("+");//setando escrita no botão
-		botaoIncremento.getStyleClass().add("botoes");
-		botaoIncremento.setOnAction(e -> {
+		Button botaoMais = new Button("+");
+		botaoMais.getStyleClass().add("botoes");
+		botaoMais.setOnAction(e -> {
 			contador++;
-			atualizarLabelNumero(labelNumero);
+			AtualizarLabelNum(labelNumero);
+		
+		});
+		
+		Button botaoMenos = new Button("-");
+		botaoMenos.getStyleClass().add("botoes");
+		botaoMenos.setOnAction(e -> {
+			contador--;
+			AtualizarLabelNum(labelNumero);
 		});
 		
 		
-		HBox boxBotoes = new HBox();
-		boxBotoes.setAlignment(Pos.CENTER);//centrando a posicao
-		boxBotoes.setSpacing(10);//tamanho do espaço entre os botao
-		boxBotoes.getChildren().add(botaoDecremento);//add botao
-		boxBotoes.getChildren().add(botaoIncremento);
+		HBox boxBotao = new HBox();
+		boxBotao.getChildren().add(botaoMenos);
+		boxBotao.getChildren().add(botaoMais);
 		
-		VBox boxConteudo = new  VBox();
-		boxConteudo.getStyleClass().add("conteudo");
-		boxConteudo.setAlignment(Pos.CENTER);
-		boxConteudo.setSpacing(10);
-		boxConteudo.getChildren().add(labelTitulo);
-		boxConteudo.getChildren().add(labelNumero);
-		boxConteudo.getChildren().add(boxBotoes);
+		boxPrincipal.getChildren().add(labelTitulo);
+		boxPrincipal.getChildren().add(labelNumero);
+		boxPrincipal.getChildren().add(boxBotao);
 		
-		//passando o caminho do arquivo css
-		String caminhoDoCss = getClass()
-				.getResource("/basico/contador.css").toExternalForm();
+		boxBotao.setSpacing(10);
+		boxPrincipal.setSpacing(10);
 		
-		//setando oque ira ter na cena principal
-		Scene cenaPrincipal = new Scene(boxConteudo,400,400);
+		boxPrincipal.setAlignment(Pos.CENTER);
+		boxBotao.setAlignment(Pos.CENTER);
 		
-		//setando o caminho para o estilo css
-		cenaPrincipal.getStylesheets().add(caminhoDoCss);
-		cenaPrincipal.getStylesheets().add("https://fonts.googleapis.com/css?family=Oswald");
+		Scene cenaPrincipal = new Scene(boxPrincipal, 200,200);
 		
-		//setando a cena que foi definida
+		String caminhoCss = getClass().getResource("/basico/Contador.css").toExternalForm(); //passando caminho do css para uma var
+		cenaPrincipal.getStylesheets().add(caminhoCss); // informando que ele vai estar na cena principal informando a var de cima
+		cenaPrincipal.getStylesheets().add("https://fonts.googleapis.com/css2?family=Oswald"); // informando que ele vai estar na cena principal informando a o link da fonte 
+		boxPrincipal.getStyleClass().add("conteudo"); //add a classe css de fato agora conforme o nome que foi declarado na classe css
+		
 		primaryStage.setScene(cenaPrincipal);
 		primaryStage.show();
+		
+		
 	}
 	
 	public static void main(String[] args) {

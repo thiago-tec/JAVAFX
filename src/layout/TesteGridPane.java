@@ -5,10 +5,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
 public class TesteGridPane extends GridPane {
-
 	
 	public TesteGridPane() {
-		
+	
 		Caixa c1 = new Caixa().comTexto("1");
 		Caixa c2 = new Caixa().comTexto("2");
 		Caixa c3 = new Caixa().comTexto("3");
@@ -16,41 +15,44 @@ public class TesteGridPane extends GridPane {
 		Caixa c5 = new Caixa().comTexto("5");
 		Caixa c6 = new Caixa().comTexto("6");
 		
-		setGridLinesVisible(true);
+		setGridLinesVisible(true);//deixando visivel o grid
+		
 		getColumnConstraints().addAll(cc(),cc(),fcc(),cc(),cc());
 		getRowConstraints().addAll(rc(),rc(),rc(),rc(),rc());
 		
 		setVgap(10);
 		setHgap(10);
 		
-		add(c1, 0, 0, 2, 2);
-		add(c2, 1, 1, 2, 2);
-		add(c3, 4, 2, 1, 3);
-		add(c4, 3, 1);
-		add(c5, 0, 4, 2, 1);
-		add(c6, 3, 3);
+		add(c1,0,0,2,2);
+		add(c2,1,1,2,2);
+		add(c3,4,2,1,3);
+		add(c4,3,1);
+		add(c5,0,4,2,1);
+		add(c6,3,3);
 		
 	}
 	
-	private ColumnConstraints cc() {
+	public ColumnConstraints cc() {
 		ColumnConstraints cc = new ColumnConstraints();
 		cc.setPercentWidth(20);
 		cc.setFillWidth(true);
-		
 		return cc;
 	}
-	private ColumnConstraints fcc() {
+	
+	public ColumnConstraints fcc() {
 		ColumnConstraints cc = new ColumnConstraints();
-		cc.setMinWidth(20);
-		cc.setMaxWidth(20);
+//		fcc.setPercentWidth(20);
+		cc.setMinWidth(30);
+		cc.setMaxWidth(30);
 		cc.setFillWidth(true);
-		
 		return cc;
 	}
+	
 	private RowConstraints rc() {
 		RowConstraints rc = new RowConstraints();
 		rc.setPercentHeight(20);
 		rc.setFillHeight(true);
 		return rc;
 	}
+
 }

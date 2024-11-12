@@ -8,28 +8,23 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class AppFXML extends Application {
+public class AppFXML extends Application{
 
-	private Stage janela;
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		janela = primaryStage;
-		String arquivoCSS = getClass().getResource("/fxml/Login.css").toExternalForm();
+		String arquivoCSS = getClass().getResource("/fxml/Login.css").toExternalForm();//passando o caminho do css
+		URL arquivoFXML = getClass().getResource("/fxml/Login.fxml");//passando o caminho do login.fxml
+		GridPane raiz = FXMLLoader.load(arquivoFXML);//recebendo a url de cima
 		
-		URL arquivoFXML = getClass().getResource("/fxml/Login.fxml");
-		GridPane raiz =  FXMLLoader.load(arquivoFXML);
+		Scene cena = new Scene(raiz,350,350);
+		cena.getStylesheets().add(arquivoCSS);//add o css na cena
 		
-		Scene cena = new Scene(raiz, 350, 350);
-		cena.getStylesheets().add(arquivoCSS);
-		
-		janela.setResizable(false);
-		janela.setTitle("Tela de Login");
-		janela.setScene(cena);
-		janela.show();
+		primaryStage.setResizable(false);//não deixa mexer na tela
+		primaryStage.setScene(cena);
+		primaryStage.setTitle("Telade Login");
+		primaryStage.show();
 		
 	}
-	
 	
 	public static void main(String[] args) {
 		launch(args);

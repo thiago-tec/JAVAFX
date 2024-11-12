@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Wizard extends Application {
-
+	
 	private Stage janela;
 	private Scene passo1;
 	private Scene passo2;
@@ -22,17 +22,16 @@ public class Wizard extends Application {
 		criarPasso2();
 		criarPasso3();
 		
-		janela.setScene(passo1);
-		janela.setTitle("Wizard Passo 1");
-		janela.show();
+		primaryStage.setScene(passo1);
+		primaryStage.setTitle("Wizard");
+		primaryStage.show();
 		
 	}
 	
 	private void criarPasso1() {
-		Button proximoPasso = new Button("ir para passo 2 ->");
-		proximoPasso.setOnAction(e ->{
+		Button proximoPasso = new Button("ir para passo 2");
+		proximoPasso.setOnAction(e -> {
 			janela.setScene(passo2);
-			janela.setTitle("passo 2");
 		});
 		
 		HBox box = new HBox();
@@ -42,48 +41,46 @@ public class Wizard extends Application {
 		passo1 = new Scene(box, 400,400);
 	}
 	private void criarPasso2() {
+		Button voltar = new Button("voltar para passo 1");
+		Button proximoPasso = new Button("ir para passo 3");
 		
-		Button proximoPasso = new Button("ir para passo 3 ->");
-		proximoPasso.setOnAction(e ->{
+		proximoPasso.setOnAction(e -> {
 			janela.setScene(passo3);
-			janela.setTitle("passo 3");
 		});
-		
-		Button passoAnterior = new Button("<- voltar para o passo 1");
-		passoAnterior.setOnAction(e -> {
+		voltar.setOnAction(e -> {
 			janela.setScene(passo1);
 		});
 		
 		HBox box = new HBox();
 		box.setAlignment(Pos.CENTER);
-		box.getChildren().add(passoAnterior);
+		box.getChildren().add(voltar);
 		box.getChildren().add(proximoPasso);
 		
 		passo2 = new Scene(box, 400,400);
 	}
+	
 	private void criarPasso3() {
+		Button voltar = new Button("voltar para passo 2");
+		Button finalizar = new Button("finalizar");
 		
-		
-		Button passoAnterior = new Button("<- voltar para o passo 2");
-		passoAnterior.setOnAction(e -> {
+		voltar.setOnAction(e -> {
 			janela.setScene(passo2);
-			janela.setTitle("passo 3");
 		});
-		Button sair = new Button("quero sair !");
-		sair.setOnAction(e -> {
+		finalizar.setOnAction(e -> {
 			System.exit(0);
 		});
 		
 		HBox box = new HBox();
 		box.setAlignment(Pos.CENTER);
-		box.getChildren().add(passoAnterior);
-		box.getChildren().add(sair);
-	
+		box.getChildren().add(voltar);
+		box.getChildren().add(finalizar);
 		
 		passo3 = new Scene(box, 400,400);
 	}
 	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }

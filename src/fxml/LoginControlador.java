@@ -8,36 +8,22 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginControlador {
-	
-	@FXML
+
+	@FXML //declarando os campos preenchidos no fx:id, perceba também que ele te o mesmo nome da tag "<TextField> ee <PasswordField>
 	private TextField campoEmail;
 	
 	@FXML
 	private PasswordField campoSenha;
 	
-	
 	public void entrar() {
-		boolean emailValido = campoEmail.getText().equals("aluno@hotmail.com");
-		boolean senhaValida = campoSenha.getText().equals("12345");
+		boolean emailValido = campoEmail.getText().equals("aluno@teste.org.br");
+		boolean senhaValido = campoSenha.getText().equals("123");
 		
-		if (emailValido && senhaValida) {
-			Notifications.create()
-			.position(Pos.CENTER)
-			.title("Login FXML")
-			.text("login efetuado com sucesso")
-			.showInformation();
-			
-		} else {
-			Notifications.create()
-			.position(Pos.CENTER)
-			.title("Login FXML")
-			.text("Usuario ou Senha incorretos")
-			.showError();
-
+		if (senhaValido && emailValido) {
+			Notifications.create().position(Pos.CENTER).title("login FXML").text("LOGIN EFETUADO COM SUCESSO").showInformation();
+		}else {
+			Notifications.create().position(Pos.CENTER).title("login FXML").text("LOGIN NÃO EFETUADO").showError();
 		}
 		
 	}
-
-	
-	
 }

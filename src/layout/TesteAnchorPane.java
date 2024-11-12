@@ -14,7 +14,7 @@ public class TesteAnchorPane extends AnchorPane{
 		
 		Quadrado q2 = new Quadrado();
 		setTopAnchor(q2, 10.0);
-		setRightAnchor(q2, 10.0);
+		setRightAnchor(q2, 10.0); //ancorar 10px na direita, e tem q ser valor double.
 		
 		Quadrado q3 = new Quadrado();
 		setBottomAnchor(q3, 10.0);
@@ -24,8 +24,6 @@ public class TesteAnchorPane extends AnchorPane{
 		setBottomAnchor(q4, 10.0);
 		setRightAnchor(q4, 10.0);
 		
-		Quadrado q5 = new Quadrado();
-		
 		
 		HBox centro = new HBox();
 		centro.setAlignment(Pos.CENTER);
@@ -33,11 +31,13 @@ public class TesteAnchorPane extends AnchorPane{
 		setBottomAnchor(centro, 110.0);
 		setLeftAnchor(centro, 110.0);
 		setRightAnchor(centro, 110.0);
+		
+		
+		Quadrado q5 = new Quadrado();
 		centro.getChildren().add(q5);
-		
-		
 		
 		getChildren().addAll(q1,q2,q3,q4,centro);
 	}
+
 	
 }

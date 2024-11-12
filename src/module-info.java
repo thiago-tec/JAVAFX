@@ -1,9 +1,9 @@
 module exerciciosfx {
-	requires javafx.controls;
-	requires javafx.fxml;
-	requires org.controlsfx.controls;
 	
+	requires javafx.fxml;
+	requires javafx.controls;
+	requires org.controlsfx.controls;
+	opens fxml;
 	opens basico;
 	opens layout;
-	opens fxml;
 }
